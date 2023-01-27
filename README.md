@@ -189,9 +189,11 @@ An Object Relational Mapper (ORM). Translates code in SQL commands that update o
     * Migrations:
         Provides ability to create db schema to automatically create tables in db server and make changes to schema based on changes in the Entity. This is called code first db creation.
 
-### 12 Add EF to Project
+### 11 Add EF to Project
 - NuGet Gallery: install NuGet Gallery extension in vscode.
-- command + shift + p open NuGet Gallery and install package `Microsoft.EntityFrameworkCore.Sqlite`
+- command + shift + p open NuGet Gallery and install package. Match version to you dotnet framework version. 
+    * `Microsoft.EntityFrameworkCore.Sqlite`
+    * `Microsoft.EntityFrameworkCore.Design`
 
 ### 13 Adding DbContext
 - create Data folder under api project
