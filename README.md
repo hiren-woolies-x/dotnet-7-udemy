@@ -165,15 +165,7 @@ Explained how api project starts. LaunchSettings.json, StartUp.cs and little bit
 
     From global usings in obj -> Debug folder usings are implicitly imported. This makes it possible to not include usings in every file. This setting is controlled by `ImplicitUsings` property in csproj file.
 
-
-### 10 Entities
-
-- Create folder `Entities` under Api project
-- Create AppUser entity by right clicking on Entities folder
-    * create int property Id
-    * create string property UserName
-
-### 11 Introduction to Entity Framework
+### 10 Introduction to Entity Framework
 - What is it?
 An Object Relational Mapper (ORM). Translates code in SQL commands that update our tables in the db.
 
