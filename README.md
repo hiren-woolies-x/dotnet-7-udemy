@@ -225,8 +225,16 @@ Added following code before `var app = builder.Build();`
     });
     ```
 
-### 14 Connection String
+### 13 Connection String
 - Added connection string in appsettings.Development.json
+following lines were added after `Logging` node
+
+```
+  "ConnectionStrings": {
+    "DefaultConnection": "Data source=datingApp.db"
+  }
+```
+
 - Added db context in ConfigureServices method of Startup.cs
 - Installed dotnet-ef using command 
 
