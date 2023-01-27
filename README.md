@@ -140,9 +140,31 @@ in Program.cs it doesn't Main class
         profiles > Api (name of project) > applicationUrl > Updated port number for http and https instead of it being random. -->
 
 
-### 9
+<!-- ### 9
    
-Explained how api project starts. LaunchSettings.json, StartUp.cs and little bit about Route.
+Explained how api project starts. LaunchSettings.json, StartUp.cs and little bit about Route. -->
+
+### 9 Creating Our First Entity
+
+1. Created a folder `Entities` in Api folder
+2. Using extension created new C# -> Class `AppUser`. 
+
+- Deleted un used usings. Added two prop 
+    
+    * Id (int)
+    * UserName (string)
+
+
+- `Api.csproj`
+
+    **Nullable Strings**
+
+    Since traditionally strings are always Nullable in C# above property shows wiggly line to indicate that the property is nullable and to use Nullable operator (`?`). Another option is to disable Nullable from `Api.csproj` file. This option is more preferred since it makes strings non nullable and we can always check if string has a value or not.
+
+    **Implicit Usings**
+
+    From global usings in obj -> Debug folder usings are implicitly imported. This makes it possible to not include usings in every file. This setting is controlled by `ImplicitUsings` property in csproj file.
+
 
 ### 10 Entities
 
