@@ -64,6 +64,28 @@
     dotnet restore
     ```
 
+* Install dotnet-ef tool for migrations
+    for install command search `nuget dotnet-ef`
+
+    ```
+    dotnet tool install --global dotnet-ef --version 7.0.2
+    ```
+
+    - To update existing tools 
+    ```
+    dotnet tool update --global dotnet-ef
+    ```
+
+    - To List installed tools
+    ```
+    dotnet tool list -g
+    ```
+
+* Run EF tool
+    ```
+    dotnet ef
+    ```
+
 ### 7 Setting VSCode for C#
 
 1. Extensions
@@ -234,20 +256,19 @@ following lines were added after `Logging` node
     "DefaultConnection": "Data source=datingApp.db"
   }
 ```
+### 14 Creating Code First EF Migrations
 
-- Added db context in ConfigureServices method of Startup.cs
 - Installed dotnet-ef using command 
 
-    ```dotnet tool install --global dotnet-ef --version 6.0.9```
-- Installed NuGet package `Microsoft.EntityFrameworkCore.Design` using NuGet Gallery
+    ```dotnet tool install --global dotnet-ef --version 7.0.2```
+
 - Created initial migration with command 
 
     ```dotnet ef migrations add InitialCreate -o Data/Migrations```
 
-### 15 Create database using migrations
-- Using following command created the database 
+- Created new database with 
 
-```dotnet ef database update```
+    ```dotnet ef database update```
 
 - Installed SQLite VScode Extension
 - Inserted data into Users table using the SQLite extension.
