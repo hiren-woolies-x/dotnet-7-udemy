@@ -195,10 +195,35 @@ An Object Relational Mapper (ORM). Translates code in SQL commands that update o
     * `Microsoft.EntityFrameworkCore.Sqlite`
     * `Microsoft.EntityFrameworkCore.Design`
 
-### 13 Adding DbContext
+### 12 Adding DbContext
 - create Data folder under api project
-- Create DataContext class overriding DbContext and add public prop Users for creating users table in database.
-- In Startup.cs AddDbContext to use sqlite connection string.
+- Create DataContext class overriding DbContext and add public prop of type DbSet<AppUser> Users for creating users table in database. Data > DataContext.cs looks like below
+
+    ```
+    using Api.Entities;
+    using Microsoft.EntityFrameworkCore;
+
+    namespace Api.Data
+    {
+        public class DataContext : DbContext
+        {
+            public DataContext(DbContextOptions options) : base(options)
+            {
+            }
+
+            public DbSet<AppUser> Users { get; set; }
+        }
+    }
+    ```
+- In Program.cs added DbContext of type DataContext using connection string from app settings.
+Added following code before `var app = builder.Build();` 
+
+    ```
+    builder.Services.AddDbContext<DataContext>(opt =>
+    {
+        opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+    });
+    ```
 
 ### 14 Connection String
 - Added connection string in appsettings.Development.json
