@@ -276,6 +276,11 @@ following lines were added after `Logging` node
 ### 16 Add new controller
 
 - Added Users controller at route `api/Users` & `api/Users/{id}`
+    * controllers are always pluralized.
+    * It's a convention to use `Controller` as suffix for each controller class name. eg. `UsersController`
+    * Controller class should derive from `ControllerBase`
+- Attribute `[ApiController]` on top of class declares the class as controller class
+- Attribute `[Route("api/[controller]")]` specifies the route starts with api and then followed by name of the Controller class. In our case users.
 
 ### 17 Making code asynchronous
 
