@@ -297,4 +297,15 @@ following lines were added after `Logging` node
             return await _context.Users.FindAsync(id);
         }
     ```
-    
+
+## Section 3 Creating Skeleton
+### 20 Creating Angular App
+    - install angular cli using 
+    ```
+    yarn global add @angular/cli@14
+    ```
+    - created new angular app called client using 
+    ```
+    ng new client
+    ```
+    - Selected yes for routing, css for styles
