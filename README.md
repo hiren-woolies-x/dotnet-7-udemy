@@ -286,4 +286,15 @@ following lines were added after `Logging` node
 
 - It is important to make database calls asynchronously that would help dotnet to reuse the thread to serve other requests while current operation is waiting for data from the database. This is makes the app scalable when there are a lot of concurrent users and the operations are taking some time getting data from db.
 
-- 
+- added `async` to function definition
+- Changed return type to `Task<return type>`
+- added `await` front of async call
+- used async function for database calls eg. 
+    ```
+        [HttpGet("{id}")]
+        public async Task<ActionResult<AppUser>> GetUser(int id)
+        {
+            return await _context.Users.FindAsync(id);
+        }
+    ```
+    
