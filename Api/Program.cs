@@ -13,6 +13,7 @@ builder.Services.AddDbContext<DataContext>(opt =>
 
 var app = builder.Build();
 
+// CORS policy
 app.UseCors(corsPolicyBuilder => corsPolicyBuilder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
 
 // Configure the HTTP request pipeline.

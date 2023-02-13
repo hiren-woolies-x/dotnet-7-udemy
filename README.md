@@ -348,3 +348,14 @@ following lines were added after `Logging` node
         // Configure the HTTP request pipeline.
         app.MapControllers();
         ```
+### 24 Displaying fetched users in browser
+
+    - used directive `*ngFor` in component template to show users
+
+    ```
+    <ul>
+        <li *ngFor="let user of users">
+            {{user.id}} - {{user.userName}}
+        </li>
+    </ul>
+    ```
