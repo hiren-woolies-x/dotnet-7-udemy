@@ -309,3 +309,24 @@ following lines were added after `Logging` node
     ng new client
     ```
     - Selected yes for routing, css for styles
+### 23 Making Http requests in Angular
+    - Added HttpClientModule from @angular/common/http in imports list of App Module
+    - App component created constructor method and declared private http object of type HttpClient in params of constructor. This created a private prop in the class 
+
+    ```
+      constructor(private http: HttpClient){}
+    ```
+    
+    - declared prop users of type any
+    - Updated App class to implement OnInit interface from @angular/core
+    - Overridden ngOnInit method to make request to users list from users api endpoint. Subscribed to returned observable and on success store the resp in users list, on error log the error on console and at completion of request log message request complete
+
+    ```
+    ngOnInit(): void {
+        this.http.get(`https://localhost:6001/api/users`).subscribe({
+        next: (resp) => this.users = resp,
+        error: (err) => console.log({getUserErr: err}),
+        complete: () => console.log('Get users request completed.')
+        })
+    }  
+    ```
