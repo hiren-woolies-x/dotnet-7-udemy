@@ -301,13 +301,17 @@ following lines were added after `Logging` node
 ## Section 3 Creating Skeleton
 ### 20 Creating Angular App
     - install angular cli using 
-    ```
-    yarn global add @angular/cli@14
-    ```
+
+        ```
+        yarn global add @angular/cli@14
+        ```
+
     - created new angular app called client using 
-    ```
-    ng new client
-    ```
+
+        ```
+        ng new client
+        ```
+    
     - Selected yes for routing, css for styles
 ### 23 Making Http requests in Angular
     - Added HttpClientModule from @angular/common/http in imports list of App Module
@@ -330,3 +334,17 @@ following lines were added after `Logging` node
         })
     }  
     ```
+
+### 23 Making Http requests in Angular
+    - fixed CORS errors by trusting angular client url in app
+
+    - Added following CORS policy 
+        ```
+        var app = builder.Build();
+
+        // CORS policy
+        app.UseCors(corsPolicyBuilder => corsPolicyBuilder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
+
+        // Configure the HTTP request pipeline.
+        app.MapControllers();
+        ```
