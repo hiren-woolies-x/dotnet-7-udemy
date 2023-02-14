@@ -428,3 +428,27 @@ dotnet ef migrations add UserPasswordColumns
 ```
 dotnet ef database update
 ```
+
+## 34 Creating a BaseApiController
+- Created new class `BaseApiController`
+```
+// BaseApiController.cs
+using Microsoft.AspNetCore.Mvc;
+
+namespace Api.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class BaseApiController : ControllerBase
+    {
+
+    }
+}
+```
+
+- Inherited `UsersController` and `WeatherForecastController` from above `BaseApiController`
+- Removed below annotations from `UsersController` and `WeatherForecastController`
+```
+    [ApiController]
+    [Route("api/[controller]")]
+```
