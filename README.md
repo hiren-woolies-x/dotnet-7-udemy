@@ -56,6 +56,10 @@
         ```
         dotnet run watch
         ```
+    - using watch without hot reload
+        ```
+        dotnet watch --no-hot-reload
+        ```
 
 * Restore dotnet packages
 
@@ -388,3 +392,39 @@ ngOnInit(): void {
     },
 ```
 - Updated CORS policy in `program.cs` in `Api` project
+
+## Section 4 Authentication Basics
+
+### V33 Updating User Entity
+
+- Added new properties `PasswordHash` and `PasswordSalt` to `AppUser` class
+
+```
+// AppUser.cs
+
+namespace Api.Entities
+{
+    public class AppUser
+    {
+        public int Id { get; set; }
+
+        public string UserName { get; set; }
+
+        public byte[] PasswordHash { get; set; }
+
+        public byte[] PasswordSalt { get; set; }
+    }
+}
+```
+
+- Added migration
+
+```
+dotnet ef migrations add UserPasswordColumns
+```
+
+- Updated database
+
+```
+dotnet ef database update
+```
