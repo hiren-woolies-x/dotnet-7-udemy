@@ -375,3 +375,16 @@ ngOnInit(): void {
 "node_modules/bootstrap/dist/css/bootstrap.min.css",
 "node_modules/font-awesome/css/font-awesome.min.css",
 ```
+
+### 27 Using HTTPS in Angular - Mac
+- Copied certificates to `client/ssl` directory
+- Added certificated and trusted it
+- added following `serve` options in `angular.json` 
+```
+    "options": {
+        "sslCert": "./ssl/server.crt",
+        "sslKey": "./ssl/server.key",
+        "ssl": true
+    },
+```
+- Updated CORS policy in `program.cs` in `Api` project
