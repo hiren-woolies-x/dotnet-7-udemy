@@ -290,6 +290,7 @@ following lines were added after `Logging` node
 - Changed return type to `Task<return type>`
 - added `await` front of async call
 - used async function for database calls eg. 
+
     ```
         [HttpGet("{id}")]
         public async Task<ActionResult<AppUser>> GetUser(int id)
@@ -299,63 +300,78 @@ following lines were added after `Logging` node
     ```
 
 ## Section 3 Creating Skeleton
+
 ### 20 Creating Angular App
-    - install angular cli using 
 
-        ```
-        yarn global add @angular/cli@14
-        ```
+- install angular cli using 
 
-    - created new angular app called client using 
+    ```
+    yarn global add @angular/cli@14
+    ```
 
-        ```
-        ng new client
-        ```
-    
-    - Selected yes for routing, css for styles
+- created new angular app called client using 
+
+    ```
+    ng new client
+    ```
+
+- Selected yes for routing, css for styles
 ### 23 Making Http requests in Angular
-    - Added HttpClientModule from @angular/common/http in imports list of App Module
-    - App component created constructor method and declared private http object of type HttpClient in params of constructor. This created a private prop in the class 
+- Added HttpClientModule from @angular/common/http in imports list of App Module
+- App component created constructor method and declared private http object of type HttpClient in params of constructor. This created a private prop in the class 
 
-    ```
-      constructor(private http: HttpClient){}
-    ```
+```
+    constructor(private http: HttpClient){}
+```
+
+- declared prop users of type any
+- Updated App class to implement OnInit interface from @angular/core
+- Overridden ngOnInit method to make request to users list from users api endpoint. Subscribed to returned observable and on success store the resp in users list, on error log the error on console and at completion of request log message request complete
+
+```
+ngOnInit(): void {
+    this.http.get(`https://localhost:6001/api/users`).subscribe({
+    next: (resp) => this.users = resp,
+    error: (err) => console.log({getUserErr: err}),
+    complete: () => console.log('Get users request completed.')
+    })
+}  
+```
+
+### 24 Adding CORS Support
+
+- fixed CORS errors by trusting angular client url in app
+
+- Added following CORS policy 
     
-    - declared prop users of type any
-    - Updated App class to implement OnInit interface from @angular/core
-    - Overridden ngOnInit method to make request to users list from users api endpoint. Subscribed to returned observable and on success store the resp in users list, on error log the error on console and at completion of request log message request complete
-
     ```
-    ngOnInit(): void {
-        this.http.get(`https://localhost:6001/api/users`).subscribe({
-        next: (resp) => this.users = resp,
-        error: (err) => console.log({getUserErr: err}),
-        complete: () => console.log('Get users request completed.')
-        })
-    }  
+    var app = builder.Build();
+
+    // CORS policy
+    app.UseCors(corsPolicyBuilder => corsPolicyBuilder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
+
+    // Configure the HTTP request pipeline.
+    app.MapControllers();
     ```
+### 25 Displaying fetched users in browser
 
-### 23 Making Http requests in Angular
-    - fixed CORS errors by trusting angular client url in app
+- used directive `*ngFor` in component template to show users
 
-    - Added following CORS policy 
-        ```
-        var app = builder.Build();
+```
+<ul>
+    <li *ngFor="let user of users">
+        {{user.id}} - {{user.userName}}
+    </li>
+</ul>
+```
 
-        // CORS policy
-        app.UseCors(corsPolicyBuilder => corsPolicyBuilder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
+### 26 Adding bootstrap and font-awesome
 
-        // Configure the HTTP request pipeline.
-        app.MapControllers();
-        ```
-### 24 Displaying fetched users in browser
+- added ngx-bootstrap, bootstrap and font-awesome packages to the client
+- Added following styles to angular.json in `styles` section
 
-    - used directive `*ngFor` in component template to show users
-
-    ```
-    <ul>
-        <li *ngFor="let user of users">
-            {{user.id}} - {{user.userName}}
-        </li>
-    </ul>
-    ```
+```
+"node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+"node_modules/bootstrap/dist/css/bootstrap.min.css",
+"node_modules/font-awesome/css/font-awesome.min.css",
+```
